@@ -1,0 +1,138 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  	body{
+  		padding: 0;
+  		margin: 0;
+  	}
+  	header.site-header{
+		height: 50px;
+    	display: flex;
+  	}
+  	.idb-logo img{
+  		width: 80px; 
+    	padding: 5px;
+    	flex-grow: 1;
+  	}
+  	.user-card{
+    	flex-grow: 1;
+  	}
+  	.user-card img{
+    	float: right;
+    }
+    .user-pic{
+    	width: 40px;
+    	height: 40px;
+    	padding: 5px;
+    }
+    .left-menu{
+        position: absolute;
+	    left: 0;
+    	border-radius: 4px;
+    	border-right: 1px solid #c3c3c3;
+	}
+    .left-menu nav{
+ 	    display: flex;
+	    flex-direction: column;   	
+    }
+    .left-menu nav button{
+    	flex-grow: 1;
+    	background-color: #fff;
+    	border:none;
+    }
+    .main-content{
+    	padding-left: 115px;
+     	position: relative;
+	    width: 100%;
+	    height: 100%;
+    }
+    .knockout-around { 
+}
+.knockout-around:before, .knockout-around:after {
+  content: "";
+  position: absolute;
+}
+.knockout-around:before {
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background-image: -webkit-gradient(radial, right top, 10, 70% 0%, 150, from(#c3c3c3), to(transparent));
+  background-image: -webkit-radial-gradient(right top, 150px 230px, #c3c3c3, transparent);
+  background-image: -moz-radial-gradient(right top, farthest-corner, #c3c3c3 0%, transparent 72%);
+  z-index: -2;
+}
+.knockout-around:after {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #c3c3c3;
+  z-index: -1;
+}
+  </style>
+</head>
+
+<body>
+ <header class="site-header">
+ 	<aside class="idb-logo"><!-- logo -->	
+	 	<img srcset="idb_logo.png"/>
+ 	</aside>
+ 	
+ 	<aside class="user-card"> <!-- user settings/badge/logout -->
+ 		<img class="user-pic" srcset="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-256.png"/>
+ 		<nav>
+ 			<ul>
+ 				<li><a href="#settings">Settings</a></li>
+ 				<li><a href="#logout">Log out</a></li>
+ 			</ul>
+ 		</nav>
+ 	</aside>
+
+ </header>
+ <main>
+ 	<aside class="left-menu knockout-around">
+ 		<nav>
+ 			<!-- repeat for deferent options -->
+ 			<button>news</button>
+ 			<button>tags</button>
+ 			<button>options</button>
+ 		</nav>
+ 	</aside>
+ 	<section class="main-content">
+ 		<section class="news-container">
+ 			<article class="news"> <!-- each new should be an article-->
+ 				<header> <!-- information relevant as title categories date and source rate -->
+ 					<h1>Titulo</h1>
+ 					<h2>Fecha </h2>
+ 					<h3>Rate</h3>
+ 					<div></div>
+ 				</header>
+ 				<section><!-- news content -->
+ 					body
+ 				</section>
+ 			</article>
+ 		</section>
+ 	</section>
+ </main>
+
+
+
+  <script type="language/javascript">
+  	
+  </script>
+</body>
+</html>

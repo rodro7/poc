@@ -1,0 +1,70 @@
+/**
+ * Created by rodrigo.rossi on 9/29/2017.
+ */
+const ActionTypes = Object.freeze({
+    READ:   Symbol("read"),
+    UNREAD:  Symbol("unread"),
+    SAVED: Symbol("saved"),
+    DISCARDED: Symbol("discarded"),
+    APPLIED: Symbol("applied")
+});
+/***
+ * @class Action
+ */
+class Action {
+    /***
+     * @description
+     * @param date
+     * @param userId
+     * @param type
+     * @param rest
+     */
+    constructor({date = null, newsId = null, userId = null, type = ActionTypes.UNREAD, ...rest}){
+        this.date = date;
+        this.body = body;
+        this.newsId = newsId;
+        this.userId = userId;
+        for(let key in rest){
+            this[key] = rest[key];
+        }
+    }
+}
+export {Action, ActionTypes};
+/**
+ * Created by rodrigo.rossi on 9/29/2017.
+ */
+class Comment {
+    constructor({id = null, date = null, body, newsId = null, userId = null, ...rest}){
+        this.id = id;
+        this.date = date;
+        this.body = body;
+        this.newsId = newsId;
+        this.userId = userId;
+        for(let key in rest){
+            this[key] = rest[key];
+        }
+    }
+}
+export default Comment;
+/**
+ * Created by rodrigo.rossi on 9/29/2017.
+ */
+class News {
+    constructor({id = null, source, date = null, body, url, rate = 0, userRate = 0, categories = [], comments = [], actions = [], keywords = [], ...rest}){
+        this.id = id;
+        this.source = source;
+        this.date = date;
+        this.body = body;
+        this.url = url;
+        this.rate = rate;
+        this.userRate = userRate;
+        this.categories = categories;
+        this.comments = comments;
+        this.actions = actions;
+        this.keywords = keywords;
+        for(let key in rest){
+            this[key] = rest[key];
+        }
+    }
+}
+export default News;

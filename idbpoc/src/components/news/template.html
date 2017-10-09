@@ -1,0 +1,6 @@
+<idb-header></idb-header>
+<idb-nav></idb-nav>
+<idb-loader *ngIf="news.length === 0"></idb-loader>
+<section class="news-list center">
+    <idb-news-card *ngFor="let n of news " [news]="n" (updateNews)="update($event)"></idb-news-card>
+</section>

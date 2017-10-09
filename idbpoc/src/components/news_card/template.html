@@ -1,0 +1,51 @@
+<section class="card-perspective news-card-container">
+    <div class="left-action rate-badge badge-rating-card" title="Score" [ngClass]="{'red': news?.rate <= 3,'yellow': news?.rate > 3 && news?.rate <= 4 }">{{news?.rate}}</div>
+    <div class="right-action">
+        <div class="action-btn flip-btn" (click)="flipped=!flipped">
+            <i class="fa fa-bar-chart" aria-hidden="true" *ngIf="!flipped"></i>
+            <i class="fa fa-newspaper-o" aria-hidden="true" *ngIf="flipped"></i>
+        </div>
+        <div class="action-btn pin-action" [ngClass]="{'selected': news.selected}" (click)="select();">
+            <i class="fa fa-map-pin" aria-hidden="true"></i>
+        </div>
+        <div class="action-btn comment-action" (click)="toogleComments=!toogleComments">
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
+        </div>
+        <idb-comment (closeEmitter)="toogleComments=!toogleComments" [active]="toogleComments" [comments]="news.comments" (commentUpdated)="commentUpdated($event)"></idb-comment>
+    </div>
+    <aside id="card" [ngClass]="{'flipped': flipped}">
+        <figure class="front">
+            <article class="card text-center news-card">
+                <div class="card-header">
+                    <h3>{{news?.title}}</h3>
+                    <span class="badge" [ngClass]="{
+                        'badge-primary': i == 0,
+                        'badge-success': i == 1,
+                        'badge-default': i == 2,
+                        'badge-info': i == 3,
+                        'badge-warning': i == 4,
+                        'badge-danger': i == 5
+                    }"
+                    *ngFor="let cat of news?.categories; let i = index">{{cat}}</span>
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text">{{news?.body}}</p>
+                    <a href="{{news?.url}}" class="btn btn-outline-info">See news in context</a>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="{{news?.source}}">Source</a> / {{news?.pubDate | date:fullDate}}
+                </div>
+            </article>
+        </figure>
+        <figure class="back statistics">
+            <idb-rate (rateUpdated)="rateUpdate($event)" [rating]="news.userRate" [id]="news.id"></idb-rate>
+            <div class="sentiment-container-bar">
+                <i class="fa fa-thumbs-o-down" aria-hidden="true" title="Negative: {{news.sentiment.negative}}"></i>
+                <div class="progress sentiment-bar" [ngStyle]="{'background': background}"></div>
+                <i class="fa fa-thumbs-o-up" aria-hidden="true" title="Positive: {{news.sentiment.positive}}"></i>
+            </div>
+            <idb-word-relevance [body]="news?.body"></idb-word-relevance>
+        </figure>
+    </aside>
+</section>

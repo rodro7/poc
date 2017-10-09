@@ -1,0 +1,40 @@
+.floating-menu{
+  position: fixed;
+  top: 50%;
+  left: 0;
+  height: 200px;
+  width: 60px;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #e2e2e2;
+  border-left: none;
+  transition: all .5s ease;
+  transform: scale(.8) translate(-40px, -50%);
+  transform-origin: 50% 50%;
+  &:hover{
+    border-color: #b0b0b0;
+    transform: scale(.9) translate(0px, -50%);
+  }
+  .btn-menu{
+    width: 40px;
+    height: 40px;
+    margin: 20px 10px;
+    transition: all 1s ease;
+    opacity: .5;
+    cursor: pointer;
+    &:hover{
+      opacity: 1;
+    }
+    &.news{
+      background-image:url('../../assets/images/worldwide.svg');
+    }
+    &.tags{
+      background-image:url('../../assets/images/price-tag.svg');
+    }
+    &.options{
+      background-image:url('../../assets/images/settings.svg');
+    }
+  }
+
+
+}

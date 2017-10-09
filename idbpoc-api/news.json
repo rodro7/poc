@@ -1,0 +1,245 @@
+{
+  "data": [
+ {  
+         "id":1,
+         "title":"Dara Khosrowshahi is off to a strong start but there are miles to go",
+         "source":"http://www.economist.com/sections/business-finance/rss.xml",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"HERE’S the job spec. Unite a deeply divided board. Keep a strong-willed founder under control. Immediately recruit a new chief financial officer. Negotiate with angry local regulators intent on closing down the business in their city. Convince courts that the company does not have to provide its contract workers with the benefits due to full-time employees. Change a cut-throat culture without curbing employees’ drive. On top of all this, deal not only with an intellectual-property (IP) lawsuit that could cost the firm nearly $2bn, but also cope with a criminal investigation by the FBI that could see some managers end up in prison.</p><p>No one sane, you would think, would even apply for such misery. But after some hesitation Dara Khosrowshahi (pronounced cause-ro-SHAH-hee), until recently the chief executive of Expedia, an online travel agency, returned the headhunter’s call. Now he is boss of Uber, which, at $68bn, is the world’s most highly valued privately-held company. Can he...<a href=\"http://www.economist.com/news/business/21730049-board-battle-partially-won-and-new-investment-softbank-near-dara-khosrowshahi?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/business/21730049-board-battle-partially-won-and-new-investment-softbank-near-dara-khosrowshahi?fsrc=rss",
+         "rate": 5,
+         "userRate":2,
+         "selected": true,
+         "sentiment":{  
+            "positive":80,
+            "negative":20
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "EEUU",
+            "default",
+            "bank",
+            "Trump"
+         ]
+      },{  
+         "id":2,
+         "title":"A Chinese carmaker agrees to buy a Danish investment bank",
+         "source":"http://www.economist.com/sections/business-finance/rss.xml",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"A COMPANY that moves up the value chain from refrigerator parts to cars is impressive but not that surprising. A car company that buys an investment bank is audacious. But Zhejiang Geely Holding Group, a conglomerate based in Hangzhou, China, did not become big by paring its ambitions. Having successfully made the fridge-parts-to-cars transition at home, it went global in 2010. It acquired Volvo, a Swedish carmaker, from Ford of America. Now Geely is back in Scandinavia for another acquisition. This time it is buying one of Denmark’s biggest banks.</p><p>Saxo Bank announced on October 2nd that Geely would acquire 51.5% of its shares. It will spend over $800m on the deal, which still requires regulatory approval. Sampo Group, a Finnish insurance company, will acquire 19.9% of Saxo shares for €265m ($311m), and Kim Fournais, Saxo’s co-founder and chief executive, will retain 25.7%. The sellers are Sinar Mas, an Indonesian conglomerate, and TPG, an American private-equity...<a href=\"http://www.economist.com/news/finance-and-economics/21730048-despite-curbs-outward-investment-chinese-firms-are-expanding-european?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/finance-and-economics/21730048-despite-curbs-outward-investment-chinese-firms-are-expanding-european?fsrc=rss",
+         "rate":4.5,
+         "userRate": 4,
+         "selected": false,
+         "sentiment":{  
+            "positive":30,
+            "negative":70
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "Argentina",
+            "default"
+         ]
+      }, {  
+         "id":3,
+         "title":"A new study details the wealth hidden in tax havens",
+         "source":"http://www.economist.com/sections/business-finance/rss.xml",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"SWITZERLAND, which developed cross-border wealth-management in the 1920s, was once in a league of its own as a tax haven. Since the 1980s, however, tax-dodgers have been spoilt for choice: they can hide assets anywhere from the Bahamas to Hong Kong. The percentage of global wealth held offshore has increased dramatically. But it has been hard to say how much that is, and who owns it.</p><p>Few offshore centres used to disclose such data. But in 2016 many authorised the Bank for International Settlements (BIS) to make banking statistics publicly available. Using these data, a new study by Annette Alstadsaeter, Niels Johannesen and Gabriel Zucman, three economists, concludes that tax havens hoard wealth equivalent to about 10% of global GDP. This average masks big variations. Russian assets worth 50% of GDP are held offshore; countries such as Venezuela, Saudi Arabia and the United Arab Emirates climb into the 60-70% range. Britain and continental Europe come in at 15%, but Scandinavia...<a href=\"http://www.economist.com/news/finance-and-economics/21730046-even-new-data-are-patchy-and-do-not-fully-account-all-wealth-new?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/finance-and-economics/21730046-even-new-data-are-patchy-and-do-not-fully-account-all-wealth-new?fsrc=rss",
+         "rate": 3.5,
+         "userRate":3,
+         "selected": true,
+         "sentiment":{  
+            "positive":30,
+            "negative":70
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "Argentina",
+            "default"
+         ]
+      },
+      {  
+         "id":4,
+         "title":"Mergers and acquisitions often disappoint",
+         "source":"http://www.economist.com/sections/business-finance/rss.xml",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"WHEN you are the chief executive of a public company, the temptation to opt for a merger or acquisition is great indeed. Many such bosses may get a call every week or so from an investment banker eager to offer the kind of deal that is sure to boost profits.</p><p>Plenty of those calls are proving fruitful. In the first three quarters of 2017, just over $2.5trn-worth of transactions were agreed globally, according to Dealogic, a data provider. The total was virtually unchanged from the same period in 2016, but the number in Europe, the Middle East and Africa was up by 21%.</p><p></p><p>It is easy to understand why an executive opts for a deal. Buying another business looks like decisive action, and is a lot easier than coming up with a new, best-selling product. Furthermore, being the acquirer is far more appealing than being the prey; better to be the butcher than the cattle. A takeover may keep activist hedge funds off the management’s back for a while longer. And being in...<a href=\"http://www.economist.com/news/finance-and-economics/21730029-bosses-and-investment-bankers-love-them-shareholders-tend-rue-them-mergers-and?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/finance-and-economics/21730029-bosses-and-investment-bankers-love-them-shareholders-tend-rue-them-mergers-and?fsrc=rss",
+         "rate": 3,
+         "userRate": 2.5,
+         "sentiment":{  
+            "positive":30,
+            "negative":70
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "Argentina",
+            "default"
+         ]
+      },
+      {  
+         "id":5,
+         "title":"After a bite of Apple, Margrethe Vestager targets another tech giant",
+         "source":"the economist",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"MARGRETHE VESTAGER’S assault on technology firms she deems to have improperly massaged down their tax bills continued this week with a tilt at Amazon. The internet retailer faces a bill of €250m ($293m) for back taxes over what the European Union’s competition commissioner considers to have been an illegal sweetheart deal with Luxembourg.</p><p>The order requiring the Grand Duchy to recover the money follows a well-publicised three-year investigation. It is the latest in a series of tax-avoidance cases brought by the European Commission against multinationals, most of them American. Last year, Ireland was ordered to recover €13bn from Apple—smashing all past records for EU corporate-tax cases.</p><p></p><p>As with Apple, the commission concluded that Amazon received illegal state aid—in the retailer’s case between 2006 and 2014—through a tax-cutting arrangement unavailable to its rivals. It came in the form of a ruling from Luxembourg’s tax authority, known as a “comfort...<a href=\"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss",
+         "rate": 2.5,
+         "userRate":3.5,
+         "sentiment":{  
+            "positive":30,
+            "negative":70
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "Argentina",
+            "default"
+         ]
+      },{  
+         "id":6,
+         "title":"After a bite of Apple, Margrethe Vestager targets another tech giant",
+         "source":"the economist",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"MARGRETHE VESTAGER’S assault on technology firms she deems to have improperly massaged down their tax bills continued this week with a tilt at Amazon. The internet retailer faces a bill of €250m ($293m) for back taxes over what the European Union’s competition commissioner considers to have been an illegal sweetheart deal with Luxembourg.</p><p>The order requiring the Grand Duchy to recover the money follows a well-publicised three-year investigation. It is the latest in a series of tax-avoidance cases brought by the European Commission against multinationals, most of them American. Last year, Ireland was ordered to recover €13bn from Apple—smashing all past records for EU corporate-tax cases.</p><p></p><p>As with Apple, the commission concluded that Amazon received illegal state aid—in the retailer’s case between 2006 and 2014—through a tax-cutting arrangement unavailable to its rivals. It came in the form of a ruling from Luxembourg’s tax authority, known as a “comfort...<a href=\"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss",
+         "rate": 2.5,
+         "userRate":3.5,
+         "sentiment":{  
+            "positive":30,
+            "negative":70
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "Argentina",
+            "default"
+         ]
+      }, 
+      {  
+         "id":7,
+         "title":"After a bite of Apple, Margrethe Vestager targets another tech giant",
+         "source":"the economist",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"MARGRETHE VESTAGER’S assault on technology firms she deems to have improperly massaged down their tax bills continued this week with a tilt at Amazon. The internet retailer faces a bill of €250m ($293m) for back taxes over what the European Union’s competition commissioner considers to have been an illegal sweetheart deal with Luxembourg.</p><p>The order requiring the Grand Duchy to recover the money follows a well-publicised three-year investigation. It is the latest in a series of tax-avoidance cases brought by the European Commission against multinationals, most of them American. Last year, Ireland was ordered to recover €13bn from Apple—smashing all past records for EU corporate-tax cases.</p><p></p><p>As with Apple, the commission concluded that Amazon received illegal state aid—in the retailer’s case between 2006 and 2014—through a tax-cutting arrangement unavailable to its rivals. It came in the form of a ruling from Luxembourg’s tax authority, known as a “comfort...<a href=\"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss",
+         "rate": 2,
+         "userRate":3.5,
+         "sentiment":{  
+            "positive":30,
+            "negative":70
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "Argentina",
+            "default"
+         ]
+      },
+      {  
+         "id": 8,
+         "title":"After a bite of Apple, Margrethe Vestager targets another tech giant",
+         "source":"the economist",
+         "pubDate":"2017-10-07T17:42:15.703Z",
+         "body":"MARGRETHE VESTAGER’S assault on technology firms she deems to have improperly massaged down their tax bills continued this week with a tilt at Amazon. The internet retailer faces a bill of €250m ($293m) for back taxes over what the European Union’s competition commissioner considers to have been an illegal sweetheart deal with Luxembourg.</p><p>The order requiring the Grand Duchy to recover the money follows a well-publicised three-year investigation. It is the latest in a series of tax-avoidance cases brought by the European Commission against multinationals, most of them American. Last year, Ireland was ordered to recover €13bn from Apple—smashing all past records for EU corporate-tax cases.</p><p></p><p>As with Apple, the commission concluded that Amazon received illegal state aid—in the retailer’s case between 2006 and 2014—through a tax-cutting arrangement unavailable to its rivals. It came in the form of a ruling from Luxembourg’s tax authority, known as a “comfort...<a href=\"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss\">Continue reading</a>",
+         "url":"http://www.economist.com/news/business-and-finance/21729965-luxembourgs-comfort-letter-amazon-was-illegal-says-eu-after-bite-apple-margrethe?fsrc=rss",
+         "rate": 1.5,
+         "userRate":3.5,
+         "sentiment":{  
+            "positive":30,
+            "negative":70
+         },
+         "categories":[  
+            "bank",
+            "country"
+         ],
+         "comments":[  
+            {  
+               "author":1,
+               "body":"this news is relevant",
+               "parentId":1,
+               "id":1
+            }
+         ],
+         "keywords":[  
+            "Argentina",
+            "default"
+         ]
+      }
+]}

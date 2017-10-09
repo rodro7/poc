@@ -1,0 +1,45 @@
+@userColor: blue;
+.menu-container{
+  -webkit-box-shadow: 0px 4px 43px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 4px 43px -5px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 43px -5px rgba(0,0,0,0.75);
+  line-height: 40px;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  nav{
+    background-color: #fff ;
+  }
+  .navbar-brand{
+    cursor: pointer;
+  }
+}
+.user-menu{
+  button{
+      display: flex;
+      flex-direction: row;
+      border: none;
+      &.dropdown-toggle{
+        cursor: pointer;
+        &::after{
+          border: none;
+        }
+        &:hover{
+          background-color: #f3f3f3;
+        }
+      }
+      span{
+        line-height: 40px;
+        margin-right: 10px;
+      }
+      .user-pic{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+  }
+  .dropdown-menu{
+    width:167px;
+  }
+}

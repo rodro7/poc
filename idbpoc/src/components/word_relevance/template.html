@@ -1,0 +1,5 @@
+<aside class="word-relevance-container">
+    <div *ngFor="let ocurrences of Words; let i = index" [ngStyle]="{order: i, 'font-size': wordSize(ocurrences)}">
+        <span *ngFor="let words of wordMap[ocurrences]; let last = last; let index = index" title="#:{{ocurrences}}">{{words}}<span *ngIf="!last || index===0">-</span></span>
+    </div>
+</aside>
