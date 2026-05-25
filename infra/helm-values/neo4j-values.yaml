@@ -1,0 +1,35 @@
+# Neo4j with Graphiti support
+neo4j:
+  name: neo4j
+  password: "neo4j-password"
+  edition: community
+
+volumes:
+  data:
+    mode: defaultStorageClass
+    defaultStorageClass:
+      requests:
+        storage: 5Gi
+
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 200m
+  limits:
+    memory: 1Gi
+    cpu: 1000m
+
+config:
+  # Enable APOC for Graphiti
+  server.directories.plugins: "/plugins"
+  dbms.security.procedures.unrestricted: "apoc.*"
+  dbms.security.procedures.allowlist: "apoc.*"
+
+podSpec:
+  labels:
+    sidecar.istio.io/inject: "false"
+
+services:
+  neo4j:
+    spec:
+      type: ClusterIP

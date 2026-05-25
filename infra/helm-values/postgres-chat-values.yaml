@@ -1,0 +1,26 @@
+# PostgreSQL for Chat API
+auth:
+  postgresPassword: "chat-api-password"
+  username: "chatapi"
+  password: "chatapi-password"
+  database: "chatdb"
+
+primary:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+  persistence:
+    enabled: true
+    size: 5Gi
+  podLabels:
+    app: postgres-chat
+    sidecar.istio.io/inject: "false"
+
+architecture: standalone
+
+metrics:
+  enabled: false

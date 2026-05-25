@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-nats
+  namespace: poc
+  labels:
+    app: auth-nats
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-nats
+  template:
+    metadata:
+      labels:
+        app: auth-nats
+        version: v1
+    spec:
+      containers:
+        - name: auth-nats
+          image: localhost:5000/auth-nats:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: NATS_URL
+              value: "nats://nats-leaf:4222"
+            - name: JWT_SECRET
+              value: "change-me-in-production"
+          resources:
+            requests:
+              memory: 64Mi
+              cpu: 50m
+            limits:
+              memory: 128Mi
+              cpu: 250m
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 30
