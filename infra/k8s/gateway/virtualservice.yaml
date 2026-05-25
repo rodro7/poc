@@ -1,0 +1,50 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: poc-routes
+  namespace: poc
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - poc-gateway
+  http:
+    # Chat API routes
+    - match:
+        - uri:
+            prefix: /api/chat
+      route:
+        - destination:
+            host: chat-api
+            port:
+              number: 8000
+
+    # Worker API routes
+    - match:
+        - uri:
+            prefix: /api/worker
+      route:
+        - destination:
+            host: worker
+            port:
+              number: 8001
+
+    # Auth service routes
+    - match:
+        - uri:
+            prefix: /auth
+      route:
+        - destination:
+            host: auth-nats
+            port:
+              number: 8080
+
+    # Arize Phoenix UI
+    - match:
+        - uri:
+            prefix: /phoenix
+      route:
+        - destination:
+            host: arize-phoenix
+            port:
+              number: 6006

@@ -1,0 +1,34 @@
+# NATS JetStream - 3 replicas with dynamic scaling to 5
+config:
+  cluster:
+    enabled: true
+    replicas: 3
+
+  jetstream:
+    enabled: true
+    memoryStore:
+      enabled: true
+      maxSize: 512Mi
+    fileStore:
+      enabled: true
+      storageDirectory: /data/jetstream
+      pvc:
+        enabled: true
+        size: 5Gi
+
+container:
+  merge:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 100m
+      limits:
+        memory: 512Mi
+        cpu: 500m
+
+podTemplate:
+  merge:
+    metadata:
+      labels:
+        app: nats-jetstream
+        sidecar.istio.io/inject: "false"

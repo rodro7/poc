@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arize-phoenix
+  namespace: poc
+  labels:
+    app: arize-phoenix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arize-phoenix
+  template:
+    metadata:
+      labels:
+        app: arize-phoenix
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+        - name: phoenix
+          image: arizephoenix/phoenix:latest
+          ports:
+            - containerPort: 6006
+              name: http
+          env:
+            - name: PHOENIX_WORKING_DIR
+              value: "/data"
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 200m
+            limits:
+              memory: 1Gi
+              cpu: 500m
+          volumeMounts:
+            - name: phoenix-data
+              mountPath: /data
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 6006
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 6006
+            initialDelaySeconds: 30
+            periodSeconds: 30
+      volumes:
+        - name: phoenix-data
+          emptyDir:
+            sizeLimit: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arize-phoenix
+  namespace: poc
+  labels:
+    app: arize-phoenix
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6006
+      targetPort: 6006
+      name: http
+      protocol: TCP
+  selector:
+    app: arize-phoenix

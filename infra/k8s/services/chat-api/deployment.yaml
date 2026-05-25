@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-api
+  namespace: poc
+  labels:
+    app: chat-api
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-api
+  template:
+    metadata:
+      labels:
+        app: chat-api
+        version: v1
+    spec:
+      containers:
+        - name: chat-api
+          image: localhost:5000/chat-api:latest
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: chat-api-config
+                  key: database-url
+            - name: REDIS_URL
+              value: "redis://:redis-password@redis-master:6379/0"
+            - name: NATS_URL
+              value: "nats://nats:4222"
+            - name: WORKER_URL
+              value: "http://worker:8001"
+            - name: PHOENIX_URL
+              value: "http://arize-phoenix:6006"
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 100m
+            limits:
+              memory: 512Mi
+              cpu: 500m
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chat-api-config
+  namespace: poc
+data:
+  database-url: "******postgres-chat-postgresql:5432/chatdb"

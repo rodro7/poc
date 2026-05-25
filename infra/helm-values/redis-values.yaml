@@ -1,0 +1,35 @@
+# Redis with 3 replicas
+architecture: replication
+
+replica:
+  replicaCount: 3
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 50m
+    limits:
+      memory: 256Mi
+      cpu: 250m
+  podLabels:
+    sidecar.istio.io/inject: "false"
+
+master:
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 50m
+    limits:
+      memory: 256Mi
+      cpu: 250m
+  persistence:
+    enabled: true
+    size: 2Gi
+  podLabels:
+    sidecar.istio.io/inject: "false"
+
+auth:
+  enabled: true
+  password: "redis-password"
+
+metrics:
+  enabled: false
