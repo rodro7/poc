@@ -1,0 +1,90 @@
+# Harbor Registry - deployed in harbor namespace
+# Accessible at https://harbor.local (add to /etc/hosts pointing to ingress IP)
+
+expose:
+  type: ingress
+  tls:
+    enabled: false   # dev environment, plain HTTP
+  ingress:
+    hosts:
+      core: harbor.local
+    className: "nginx"
+
+externalURL: http://harbor.local
+
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    registry:
+      size: 20Gi
+    jobservice:
+      jobLog:
+        size: 2Gi
+    database:
+      size: 2Gi
+    redis:
+      size: 1Gi
+    trivy:
+      size: 5Gi
+
+harborAdminPassword: "Harbor12345"
+
+# Project 'poc' will be created via API after install (see install.sh)
+
+registry:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+
+core:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+
+jobservice:
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 50m
+    limits:
+      memory: 256Mi
+      cpu: 250m
+
+database:
+  internal:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 100m
+      limits:
+        memory: 512Mi
+        cpu: 500m
+
+redis:
+  internal:
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: 50m
+      limits:
+        memory: 128Mi
+        cpu: 250m
+
+trivy:
+  enabled: true
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 500m

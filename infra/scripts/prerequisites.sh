@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Prerequisites checker for Mac M3 Pro
+# Prerequisites checker for Mac M3 Pro (Rancher Desktop + Harbor)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -19,19 +19,28 @@ check_command() {
   fi
 }
 
-echo "=== Checking Prerequisites ==="
+echo "=== Checking Prerequisites (Rancher Desktop + Harbor) ==="
 echo ""
 
 MISSING=0
 
-check_command "brew"    "See https://brew.sh" || MISSING=1
-check_command "docker"  "brew install --cask docker" || MISSING=1
-check_command "minikube" "brew install minikube" || MISSING=1
-check_command "kubectl"  "brew install kubectl" || MISSING=1
-check_command "helm"     "brew install helm" || MISSING=1
-check_command "istioctl" "brew install istioctl" || MISSING=1
+check_command "brew"      "See https://brew.sh" || MISSING=1
+check_command "rdctl"     "brew install --cask rancher" || MISSING=1
+check_command "kubectl"   "brew install kubectl" || MISSING=1
+check_command "helm"      "brew install helm" || MISSING=1
+check_command "istioctl"  "brew install istioctl" || MISSING=1
+check_command "docker"    "Included with Rancher Desktop" || MISSING=1
 
 echo ""
+
+# Verify Rancher Desktop cluster is reachable
+if kubectl cluster-info --context rancher-desktop &>/dev/null 2>&1; then
+  echo -e "${GREEN}✓${NC} Rancher Desktop cluster is reachable"
+else
+  echo -e "${RED}✗${NC} Rancher Desktop cluster not reachable."
+  echo "   Start Rancher Desktop from the Applications menu, wait for the green light."
+  MISSING=1
+fi
 
 # Check architecture
 ARCH=$(uname -m)

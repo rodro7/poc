@@ -17,9 +17,11 @@ spec:
         app: auth-nats
         version: v1
     spec:
+      imagePullSecrets:
+        - name: harbor-pull-secret
       containers:
         - name: auth-nats
-          image: localhost:5000/auth-nats:latest
+          image: harbor.local/poc/auth-nats:latest
           ports:
             - containerPort: 8080
               name: http

@@ -1,6 +1,6 @@
-# POC Infrastructure Installer
+# POC Infrastructure Installer — Rancher Desktop + Harbor
 
-Minikube-based Kubernetes infrastructure with Istio service mesh for a chat application stack.
+Kubernetes infrastructure with Istio service mesh, using **Rancher Desktop** (K3s) as the local cluster and **Harbor** as the private container registry.
 
 ## Architecture
 
@@ -29,86 +29,132 @@ Minikube-based Kubernetes infrastructure with Istio service mesh for a chat appl
 │(worker)│                             │NATS Leaf  │
 └────────┘                             │  (3→5)    │
                                        └───────────┘
-┌─────────────┐
-│Arize Phoenix│  (Observability)
-└─────────────┘
+┌────────────────┐   ┌─────────────┐
+│ Harbor Registry│   │Arize Phoenix│
+│  harbor.local  │   │(Observ.)    │
+└────────────────┘   └─────────────┘
 ```
 
 ## Prerequisites
 
-- macOS with Apple Silicon (M3 Pro recommended, 24GB RAM)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- macOS with Apple Silicon (M3 Pro, 24GB RAM)
+- [Rancher Desktop](https://rancherdesktop.io/) — provides K3s + kubectl + docker/nerdctl
 - [Homebrew](https://brew.sh)
 
-Install required tools:
+### Install required CLI tools
+
 ```bash
-brew install minikube kubectl helm istioctl
+brew install --cask rancher          # Rancher Desktop (includes rdctl)
+brew install helm istioctl
 ```
+
+Open **Rancher Desktop**, choose **dockerd** as the container runtime, and wait for the green status indicator before running the installer.
+
+### /etc/hosts entry
+
+After installing Harbor you will need to add the Harbor hostname to `/etc/hosts`.
+The installer will print the exact line to add.
 
 ## Quick Start
 
 ```bash
-# Make scripts executable
 chmod +x infra/scripts/*.sh
-
-# Run the installer
 ./infra/scripts/install.sh
 ```
 
 ## Components
 
-| Component | Type | Replicas | Image |
-|-----------|------|----------|-------|
-| Chat API | Python FastAPI | 1 | Local registry |
-| Worker | Python LangGraph FastAPI | 1 | Local registry |
-| Auth NATS | Go JWT service | 1 | Local registry |
-| NATS JetStream | Helm chart | 3 (HPA → 5) | nats:latest |
-| NATS Leaf | Helm chart | 3 (HPA → 5) | nats:latest |
-| PostgreSQL (chat) | Helm chart | 1 | bitnami/postgresql |
-| PostgreSQL (worker) | Helm chart | 1 | bitnami/postgresql |
-| Redis | Helm chart | 3 replicas | bitnami/redis |
-| Neo4j | Helm chart | 1 | neo4j |
+| Component | Type | Replicas | Image Source |
+|-----------|------|----------|--------------|
+| Chat API | Python FastAPI | 1 | harbor.local/poc/chat-api |
+| Worker | Python LangGraph FastAPI | 1 | harbor.local/poc/worker |
+| Auth NATS | Go JWT service | 1 | harbor.local/poc/auth-nats |
+| NATS JetStream | Helm (nats/nats) | 3 (HPA → 5) | nats:latest |
+| NATS Leaf | Helm (nats/nats) | 3 (HPA → 5) | nats:latest |
+| PostgreSQL (chat) | Helm (bitnami) | 1 | bitnami/postgresql |
+| PostgreSQL (worker) | Helm (bitnami) | 1 | bitnami/postgresql |
+| Redis | Helm (bitnami) | 3 replicas | bitnami/redis |
+| Neo4j | Helm (neo4j/neo4j) | 1 | neo4j |
 | Arize Phoenix | K8s manifest | 1 | arizephoenix/phoenix |
+| **Harbor** | Helm (goharbor/harbor) | — | goharbor/harbor-core |
+| nginx ingress | Helm | — | (required for Harbor) |
+
+## Harbor Registry
+
+Harbor is deployed in the `harbor` namespace and exposed at `http://harbor.local`.
+
+| Field | Value |
+|-------|-------|
+| URL | http://harbor.local |
+| Username | admin |
+| Default password | Harbor12345 (change after first login) |
+| Project | poc |
+
+Images are tagged and pushed as:
+```
+harbor.local/poc/chat-api:latest
+harbor.local/poc/worker:latest
+harbor.local/poc/auth-nats:latest
+```
+
+All application deployments reference `harbor-pull-secret` (created by `install.sh`).
+
+### Rebuilding and pushing a single image
+
+```bash
+# Log in
+echo "Harbor12345" | docker login harbor.local -u admin --password-stdin
+
+# Rebuild and push chat-api
+docker build --platform linux/arm64 \
+  -t harbor.local/poc/chat-api:latest \
+  infra/docker/chat-api
+docker push harbor.local/poc/chat-api:latest
+
+# Roll out the new image
+kubectl rollout restart deployment/chat-api -n poc
+```
 
 ## Resource Allocation (Mac M3 Pro 24GB)
 
-- **Minikube**: 6 CPUs, 16GB RAM, 60GB disk
-- **macOS reserved**: ~8GB RAM for system operations
+- **Rancher Desktop / K3s**: configure via Rancher Desktop Preferences → Virtual Machine
+  - Recommended: 6 CPUs, 16GB RAM
+- **macOS**: ~8GB reserved for system operations
 
 ## NATS Dynamic Scaling
 
-Both NATS JetStream and Leaf Node clusters are configured with HPA:
-- **Min replicas**: 3
-- **Max replicas**: 5
+Both NATS JetStream and Leaf Node clusters scale between 3–5 replicas:
 - **Scale-up trigger**: CPU > 70% OR Memory > 75%
 - **Scale-down stabilization**: 5 minutes
 
 ## Accessing Services
 
-After installation, start the tunnel:
+Forward the Istio ingress gateway:
 ```bash
-minikube -p poc-cluster tunnel
+kubectl -n istio-system port-forward svc/istio-ingressgateway 8080:80
 ```
 
 Then access:
-- **Chat API**: http://localhost/api/chat
-- **Worker API**: http://localhost/api/worker
-- **Auth**: http://localhost/auth/validate
-- **Arize Phoenix**: http://localhost/phoenix
+- **Chat API**: http://localhost:8080/api/chat
+- **Worker API**: http://localhost:8080/api/worker
+- **Auth**: http://localhost:8080/auth/validate
+- **Arize Phoenix**: http://localhost:8080/phoenix
+- **Harbor UI**: http://harbor.local
 
 ## Directory Structure
 
 ```
 infra/
 ├── scripts/
-│   ├── install.sh          # Main installer
-│   ├── uninstall.sh        # Cleanup script
-│   └── prerequisites.sh    # Prerequisite checker
+│   ├── install.sh              # Main installer (Rancher + Harbor)
+│   ├── uninstall.sh            # Cleanup (leaves Rancher Desktop running)
+│   └── prerequisites.sh        # Prerequisite checker
 ├── docker/
-│   ├── chat-api/           # Chat API Dockerfile + source
-│   ├── worker/             # Worker Dockerfile + source
-│   └── auth-nats/          # Auth NATS Go service
+│   ├── chat-api/               # Python FastAPI Dockerfile + source
+│   ├── worker/                 # Python LangGraph Dockerfile + source
+│   └── auth-nats/              # Go JWT auth Dockerfile + source
 ├── helm-values/
+│   ├── harbor-values.yaml      # Harbor registry configuration
 │   ├── postgres-chat-values.yaml
 │   ├── postgres-worker-values.yaml
 │   ├── redis-values.yaml
@@ -116,11 +162,11 @@ infra/
 │   ├── nats-leaf-values.yaml
 │   └── neo4j-values.yaml
 └── k8s/
-    ├── namespaces/         # Namespace with Istio injection
-    ├── gateway/            # Istio Gateway + VirtualService
-    ├── services/           # App deployments + services
-    ├── nats/               # HPA for NATS scaling
-    └── observability/      # Arize Phoenix
+    ├── namespaces/             # poc + harbor namespace manifests
+    ├── gateway/                # Istio Gateway + VirtualService
+    ├── services/               # App deployments + services (Harbor images)
+    ├── nats/                   # HPA for NATS scaling
+    └── observability/          # Arize Phoenix
 ```
 
 ## Uninstall
@@ -129,8 +175,10 @@ infra/
 ./infra/scripts/uninstall.sh
 ```
 
+This removes the `poc` and `harbor` namespaces and Istio. **Rancher Desktop is not stopped.**
+
 ## Notes
 
-- All passwords in this setup are for **development only**. Use Kubernetes Secrets with proper secret management for production.
-- The Istio sidecar injection is disabled for stateful services (PostgreSQL, Redis, NATS, Neo4j) to avoid connectivity issues.
-- Docker images are built inside the minikube Docker environment and pushed to minikube's built-in registry.
+- Passwords in this setup are for **development only**. Use proper secret management (e.g. Vault, Kubernetes Secrets with external-secrets) for production.
+- Istio sidecar injection is disabled for stateful services (PostgreSQL, Redis, NATS, Neo4j).
+- The `--platform linux/arm64` flag ensures images are built for Apple Silicon.

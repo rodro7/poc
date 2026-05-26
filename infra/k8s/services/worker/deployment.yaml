@@ -17,9 +17,11 @@ spec:
         app: worker
         version: v1
     spec:
+      imagePullSecrets:
+        - name: harbor-pull-secret
       containers:
         - name: worker
-          image: localhost:5000/worker:latest
+          image: harbor.local/poc/worker:latest
           ports:
             - containerPort: 8001
               name: http
